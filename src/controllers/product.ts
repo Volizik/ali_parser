@@ -1,7 +1,7 @@
 import {Request, Response} from "express";
 
 import {stringifyQueryString} from "../utils";
-import {getProduct} from "../services/product";
+import { AliProductParser } from "../services/ali_product_parser";
 
 export const product = async (req: Request, res: Response) => {
     const id = stringifyQueryString(req.query.id);
@@ -12,10 +12,11 @@ export const product = async (req: Request, res: Response) => {
         })
         return;
     }
-    const product = await getProduct(id);
+    const parser = new AliProductParser();
+    const info = await parser.getInfo(id);
 
     res.json({
-        success: true,
-        data: product,
+        success: info !== null,
+        data: info,
     });
 }

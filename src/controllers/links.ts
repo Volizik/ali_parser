@@ -1,7 +1,7 @@
 import {Request, Response} from "express";
 
 import {stringifyQueryString} from "../utils";
-import { getLinks } from "../services/links";
+import { GooglePhotoSearch } from "../services/google_photo_search";
 
 export const links = async (req: Request, res: Response) => {
     const imgSrc = stringifyQueryString(req.query.img);
@@ -12,7 +12,8 @@ export const links = async (req: Request, res: Response) => {
         })
         return;
     }
-    const links = await getLinks(imgSrc);
+    const googlePhotoSearch = new GooglePhotoSearch();
+    const links = await googlePhotoSearch.getSimilarLinks(imgSrc);
 
     if (!Array.isArray(links)) {
         res.json({

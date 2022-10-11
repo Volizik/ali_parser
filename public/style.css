@@ -2,12 +2,12 @@ body {
     margin: 0
 }
 
-div {
+.list {
     display: grid;
     grid-gap: 10px;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 }
-a {
+.card {
     padding: 10px;
     box-sizing: border-box;
     border: 1px solid;
@@ -15,4 +15,12 @@ a {
     overflow: hidden;
     display: flex;
     flex-direction: column;
+}
+a {
+    display: flex;
+    flex-direction: column;
+}
+strong {
+    color: red;
+    font-size: 20px;
 }

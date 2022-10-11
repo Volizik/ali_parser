@@ -2,8 +2,10 @@ html
     head
         link(rel="stylesheet" href="./style.css")
     body
-        div
-            each link in links
-                a(href=link.href)
-                    img(src=link.src)
-                    span #{link.name}
+        div.list
+            each card in cards
+                div.card
+                    a(href=card.href)
+                        img(src=card.src)
+                        span #{card.name}
+                    strong #{card.price}
