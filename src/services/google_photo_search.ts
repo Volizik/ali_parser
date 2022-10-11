@@ -7,7 +7,13 @@ export class GooglePhotoSearch {
     private linkSelector = 'https://aliexpress.ru/item/';
 
     public async getSimilarLinks(imageSrc: string) {
-        const browser = await launch({ headless: true });
+        const browser = await launch({
+            headless: true,
+            args: [
+                '--no-sandbox',
+                '--disable-setuid-sandbox',
+            ]
+        });
 
         try {
             const page = await browser.newPage();
