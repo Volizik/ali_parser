@@ -55,7 +55,7 @@ export class AliProductParser {
             const selectedString = (selector.text().match(regexp) || [])[1];
             return selectedString ? JSON.parse(selectedString.replace(/\n\r\s/g, '')) : null;
         } catch (e: any) {
-            console.log(e?.message)
+            console.log(e?.message);
             return null
         }
     }
