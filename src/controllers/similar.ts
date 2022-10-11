@@ -27,6 +27,7 @@ export const similar = async (req: Request, res: Response) => {
 
     const googlePhotoSearch = new GooglePhotoSearch();
     const links = await googlePhotoSearch.getSimilarLinks(image);
+    console.log(`[Links]: `, links)
 
     if (!Array.isArray(links)) {
         res.json({
