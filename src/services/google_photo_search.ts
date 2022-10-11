@@ -1,10 +1,15 @@
 import { launch } from 'puppeteer'
 
+//     private googleLink = 'https://images.google.com/';
+//     private modalSelector = '[aria-label="Поиск по картинке"]';
+//     private inputSelector = '[placeholder="Вставьте ссылку на изображение"]';
+//     private linkSelector = 'https://aliexpress.ru/item/';
+
 export class GooglePhotoSearch {
-    private googleLink = 'https://images.google.com/';
-    private modalSelector = '[aria-label="Поиск по картинке"]';
-    private inputSelector = '[placeholder="Вставьте ссылку на изображение"]';
-    private linkSelector = 'https://aliexpress.ru/item/';
+    private googleLink = 'https://www.google.com/imghp?hl=en';
+    private buttonSelector = '[aria-label="Search by image"]';
+    private inputSelector = '[placeholder="Paste image link"]';
+    private linkSelector = 'https://www.aliexpress.com/i';
 
     public async getSimilarLinks(imageSrc: string) {
         const browser = await launch({
@@ -19,7 +24,7 @@ export class GooglePhotoSearch {
             const page = await browser.newPage();
             await page.goto(this.googleLink);
 
-            await page.click(this.modalSelector);
+            await page.click(this.buttonSelector);
             await page.evaluate((inputSelector, imageSrc) => {
                 const input: HTMLInputElement | null = document.querySelector(inputSelector);
                 const button = input?.nextElementSibling as HTMLElement;

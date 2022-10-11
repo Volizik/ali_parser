@@ -37,7 +37,7 @@ export const similar = async (req: Request, res: Response) => {
         return;
     }
 
-    const regexp = /(?<=aliexpress\.com\/|aliexpress\.ru\/).*(?=\.html)/
+    const regexp = /(?<=aliexpress\.com\/item\/|aliexpress\.com\/i\/|aliexpress\.ru\/item\/|aliexpress\.ru\/i\/).*(?=\.html)/
     const ids = links.map((link) => link.match(regexp))
 
     const products: Promise<any>[] = []
