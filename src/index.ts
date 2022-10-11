@@ -16,6 +16,8 @@ app.set('view engine', 'pug')
 
 app.get('/', controllers.root);
 
+app.get('/test', controllers.test);
+
 app.get('/product', controllers.product);
 
 app.get('/links', controllers.links);

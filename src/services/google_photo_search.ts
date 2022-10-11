@@ -27,7 +27,9 @@ export class GooglePhotoSearch {
             await page.click(this.buttonSelector);
             await page.evaluate((inputSelector, imageSrc) => {
                 const input: HTMLInputElement | null = document.querySelector(inputSelector);
+                console.log('[GooglePhotoSearch] input label ', input?.ariaLabel)
                 const button = input?.nextElementSibling as HTMLElement;
+                console.log('[GooglePhotoSearch] button text ', button?.innerText)
                 if (input && button) {
                     input.value = imageSrc;
                     button.click?.();
@@ -38,7 +40,10 @@ export class GooglePhotoSearch {
 
             return await page.evaluate((linkSelector) => Array.from(
                 document.querySelectorAll<HTMLAnchorElement>(`a[href^="${linkSelector}"]`),
-                (element) => element.href
+                (element) => {
+                    console.log('[GooglePhotoSearch] link ', element.href)
+                    return element.href
+                }
             ), this.linkSelector);
         } catch (e) {
             return e;
